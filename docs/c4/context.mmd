@@ -1,0 +1,6 @@
+flowchart LR
+    user[UserOrJudge] --> localScript[LocalScript]
+    localScript --> llm[LocalOrInPerimeterLLM]
+    localScript --> validators[LuaValidators]
+    localScript --> sandbox[LuacOrDockerSandbox]
+    localScript --> corpus[OptionalLocalKnowledgeCorpus]

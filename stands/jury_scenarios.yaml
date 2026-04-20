@@ -1,0 +1,51 @@
+# Сценарии для stands/run_jury_drill.py (--scenarios путь к этому файлу)
+# Поля: id, task, context (опционально, строка или null)
+
+scenarios:
+  - id: J1_smoke
+    task: "Lua 5.4: одна строка — вывести в stdout строку 'jury-smoke-ok'."
+    context: null
+
+  - id: J2_small_api
+    task: >-
+      Lua 5.4: функция twice(x) возвращает 2*x; затем print(twice(21)).
+      Только стандартная библиотека, без внешних файлов.
+    context: null
+
+  - id: J3_octapi_rag
+    task: >-
+      По документации octapi: напиши минимальный скрипт, который вызывает
+      octapi.version(), печатает результат через print и завершается.
+    context: null
+
+  - id: J4_edge
+    task: >-
+      Lua 5.4: функция safe_div(a,b) — если b==0 вернуть nil и сообщение через второе
+      возвращаемое значение, иначе частное; в конце два print для safe_div(10,2) и safe_div(3,0).
+    context: null
+
+  - id: J5_fix_loop
+    task: >-
+      Lua 5.4: функция greet(name) — если name пустая строка или nil, вернуть "Hello, world",
+      иначе "Hello, " .. name. Затем print(greet("")) и print(greet("Ada")).
+      (Сформулировано так, чтобы при слабой модели иногда нужна была правка — при наличии линтеров/sandbox.)
+    context: null
+
+  - id: J6_octapi_connect
+    task: >-
+      По документации octapi: подключись к хосту 'relay', отправь строку 'ping' через handle,
+      затем закрой сессию. Используй только API из стаба (без require).
+    context: null
+
+  - id: J7_purity
+    task: >-
+      Lua 5.4: чистые функции — config_defaults() возвращает таблицу { timeout = 30, retries = 3 };
+      merge_config(base, override) поверхностно копирует base и перекрывает полями из override.
+      В конце print(merge_config(config_defaults(), { retries = 1 }).retries).
+      Без ввода-вывода кроме этого print, без io/os.
+    context: null
+
+  - id: J8_explicit_ban
+    task: >-
+      Lua 5.4: выведи через print сумму чисел 1+2+3. Не используй модули os и io.
+    context: null

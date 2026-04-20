@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>LocalScript</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 60rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+    label { display: block; margin-top: 1rem; font-weight: 600; }
+    textarea { width: 100%; min-height: 7rem; padding: 0.65rem; font-family: ui-monospace, monospace; font-size: 0.9rem; }
+    button { margin-top: 1rem; padding: 0.65rem 1rem; cursor: pointer; }
+    pre, .panel { background: #f4f4f5; padding: 1rem; overflow: auto; font-size: 0.85rem; border-radius: 0.5rem; }
+    .err { color: #b91c1c; }
+    .ok { color: #15803d; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .modes { display: flex; gap: 1rem; margin-top: 1rem; }
+    .muted { color: #52525b; }
+    @media (max-width: 800px) { .row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>LocalScript</h1>
+  <p>POST to <code>/generate</code> on this host (port <code id="port"></code>). OpenAPI: <a href="/docs">/docs</a></p>
+  <div class="panel">
+    <strong>Modes</strong>
+    <div class="modes">
+      <label><input type="radio" name="mode" value="submission" checked> Submission mode</label>
+      <label><input type="radio" name="mode" value="showcase"> Showcase mode</label>
+    </div>
+    <p class="muted" id="mode-help">Compact organizer-friendly request: send <code>{"prompt":"..."}</code> and get back <code>{"code":"..."}</code>.</p>
+  </div>
+
+  <label for="task" id="task-label">Prompt</label>
+  <textarea id="task" placeholder="Write a Lua 5.4 function..."></textarea>
+
+  <div id="context-wrap" style="display:none;">
+    <label for="context">Context (optional)</label>
+    <textarea id="context" placeholder="API stubs / conventions…"></textarea>
+  </div>
+
+  <button type="button" id="go">Generate</button>
+
+  <div class="row">
+    <div>
+      <h2>Result</h2>
+      <pre id="out">(idle)</pre>
+    </div>
+    <div>
+      <h2>Trust summary</h2>
+      <div class="panel" id="trust">(idle)</div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("port").textContent = String(window.location.port || "{{ default_port }}");
+    const modeEls = Array.from(document.querySelectorAll('input[name="mode"]'));
+    const taskLabel = document.getElementById("task-label");
+    const taskEl = document.getElementById("task");
+    const contextWrap = document.getElementById("context-wrap");
+    const modeHelp = document.getElementById("mode-help");
+
+    function currentMode() {
+      return modeEls.find((el) => el.checked)?.value || "submission";
+    }
+
+    function syncModeUi() {
+      const mode = currentMode();
+      if (mode === "submission") {
+        taskLabel.textContent = "Prompt";
+        taskEl.placeholder = "Write a Lua 5.4 function...";
+        contextWrap.style.display = "none";
+        modeHelp.innerHTML = 'Compact organizer-friendly request: send <code>{"prompt":"..."}</code> and get back <code>{"code":"..."}</code>.';
+      } else {
+        taskLabel.textContent = "Task";
+        taskEl.placeholder = "Lua 5.4 task...";
+        contextWrap.style.display = "block";
+        modeHelp.innerHTML = 'Richer showcase request: send <code>{"task":"...","context":"..."}</code> and inspect steps, validation, and trust evidence.';
+      }
+    }
+
+    function renderTrust(payload) {
+      const trust = document.getElementById("trust");
+      if (payload?.evidence) {
+        const ev = payload.evidence;
+        const lines = [
+          `Surface: ${payload.surface || "showcase"}`,
+          `Trust summary: ${ev.trust_summary}`,
+          `Attempts: ${ev.attempts}`,
+          `Validation profile: ${ev.validation_profile}`,
+          `Passed: ${ev.passed_checks.join(", ") || "(none)"}`,
+          `Failed: ${ev.failed_checks.join(", ") || "(none)"}`,
+          `Skipped: ${ev.skipped_checks.join(", ") || "(none)"}`,
+        ];
+        if (ev.last_diagnostics) {
+          lines.push(`Last diagnostics: ${ev.last_diagnostics}`);
+        }
+        trust.textContent = lines.join("\n");
+        trust.className = payload.success ? "panel ok" : "panel err";
+        return;
+      }
+      if (payload?.code) {
+        trust.textContent = "Submission mode returns compact output. Trust details are available in showcase mode.";
+        trust.className = "panel ok";
+        return;
+      }
+      trust.textContent = "(idle)";
+      trust.className = "panel";
+    }
+
+    modeEls.forEach((el) => el.addEventListener("change", syncModeUi));
+    syncModeUi();
+
+    document.getElementById("go").onclick = async () => {
+      const mode = currentMode();
+      const task = document.getElementById("task").value;
+      const context = document.getElementById("context").value;
+      const out = document.getElementById("out");
+      const trust = document.getElementById("trust");
+      out.textContent = "…";
+      trust.textContent = "…";
+      trust.className = "panel";
+      try {
+        const body = mode === "submission"
+          ? { prompt: task }
+          : { task, context: context || null };
+        const r = await fetch("/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        const j = await r.json();
+        out.textContent = JSON.stringify(j, null, 2);
+        out.className = j.success === false ? "err" : "ok";
+        renderTrust(j);
+      } catch (e) {
+        out.textContent = String(e);
+        out.className = "err";
+        trust.textContent = String(e);
+        trust.className = "panel err";
+      }
+    };
+  </script>
+</body>
+</html>

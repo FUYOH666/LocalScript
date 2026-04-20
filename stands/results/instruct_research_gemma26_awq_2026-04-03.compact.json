@@ -1,0 +1,346 @@
+[
+  {
+    "id": "J1_smoke",
+    "success": true,
+    "error": null,
+    "seconds": 0.35,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "ok"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "not_applicable"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 1,
+    "code_preview": "print('jury-smoke-ok')"
+  },
+  {
+    "id": "J2_small_api",
+    "success": true,
+    "error": null,
+    "seconds": 0.38,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "ok"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "not_applicable"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 5,
+    "code_preview": "local function twice(x)\n    return 2 * x\nend\n\nprint(twice(21))"
+  },
+  {
+    "id": "J3_octapi_rag",
+    "success": true,
+    "error": null,
+    "seconds": 0.22,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "ok"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "not_applicable"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 1,
+    "code_preview": "print(octapi.version())"
+  },
+  {
+    "id": "J4_edge",
+    "success": true,
+    "error": null,
+    "seconds": 0.7,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "ok"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "not_applicable"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 13,
+    "code_preview": "function safe_div(a, b)\n    if b == 0 then\n        return nil, \"ошибка: деление на ноль\"\n    else\n        return a / b\n    end\nend\n\nlocal res1, err1 = safe_div(10, 2)\nprint(res1, err1)\n\nlocal res2, err2 = safe_div(3, 0)\nprint(res2, err2)"
+  },
+  {
+    "id": "J5_fix_loop",
+    "success": true,
+    "error": null,
+    "seconds": 0.47,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "ok"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "not_applicable"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 10,
+    "code_preview": "function greet(name)\n    if name == nil or name == \"\" then\n        return \"Hello, world\"\n    else\n        return \"Hello, \" .. name\n    end\nend\n\nprint(greet(\"\"))\nprint(greet(\"Ada\"))"
+  },
+  {
+    "id": "J6_octapi_connect",
+    "success": true,
+    "error": null,
+    "seconds": 0.5,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "ok"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "not_applicable"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 8,
+    "code_preview": "-- Подключение к хосту 'relay'\nlocal session = octapi.connect(\"relay\")\n\n-- Отправка строки 'ping' через handle\nsession:send(\"ping\")\n\n-- Закрытие сессии\nsession:close()"
+  },
+  {
+    "id": "J7_purity",
+    "success": true,
+    "error": null,
+    "seconds": 1.27,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "ok"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "not_applicable"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 27,
+    "code_preview": "-- Функция возвращает таблицу с настройками по умолчанию\nlocal function config_defaults()\n    return {\n        timeout = 30,\n        retries = 3\n    }\nend\n\n-- Функция поверхностно копирует base и перекрывает поля из override\nlocal function merge_config(base, override)\n    local new_config = {}\n    \n    -- Копируем поля из base\n    for k, v in pairs(base) do\n        new_config[k] = v\n    end\n    \n "
+  },
+  {
+    "id": "J8_explicit_ban",
+    "success": true,
+    "error": null,
+    "seconds": 0.42,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "ok"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "not_applicable"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 1,
+    "code_preview": "print(1 + 2 + 3)"
+  }
+]

@@ -1,0 +1,9 @@
+---
+# Selene std for LocalScript when the binary ships without builtin `lua54`
+# (typical Homebrew bottle). Uses bundled `lua51` definitions only; Lua 5.4
+# syntax features beyond that may not lint — host `luac -p` / LuaLS still
+# enforce 5.4. Declares octapi from stubs for RAG/jury scenarios.
+base: lua51
+globals:
+  octapi:
+    any: true

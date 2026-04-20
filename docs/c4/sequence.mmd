@@ -1,0 +1,25 @@
+sequenceDiagram
+    participant User
+    participant API as FastAPI
+    participant Loop as GenerateValidateFixLoop
+    participant LLM as OpenAICompatibleLLM
+    participant Validators as ValidationChain
+    participant Sandbox as SandboxGate
+
+    User->>API: POST /generate
+    API->>Loop: build request context
+    Loop->>LLM: chat/completions
+    LLM-->>Loop: assistant text
+    Loop->>Loop: extract Lua
+    Loop->>Validators: run static validators
+    alt validators pass
+        Loop->>Sandbox: run luac or docker sandbox
+        alt sandbox pass
+            Loop-->>API: success + evidence
+            API-->>User: code or showcase response
+        else sandbox fails
+            Loop->>LLM: diagnostics feedback
+        end
+    else validators fail
+        Loop->>LLM: diagnostics feedback
+    end

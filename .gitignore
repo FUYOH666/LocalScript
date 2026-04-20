@@ -1,0 +1,73 @@
+.env
+# Локальные варианты окружения (никогда не публиковать)
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE / редакторы
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Временные и редакторские мусорки
+*~
+*.swp
+*.swo
+~$*
+*.tmp
+.cache/
+
+# Покрытие тестами (если включите локально)
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Прочие кэши инструментов
+.hypothesis/
+.pyrightcache/
+# Локальные артефакты демо / записи экрана (гайды остаются в docs/)
+/artifacts/
+/recordings/
+/demo_output/
+/*.mov
+/*.mp4
+# Временные файлы ffmpeg (если запускали кодирование из корня репо)
+ffmpeg2pass-*.log
+*.log.mbtree
+
+# Случайные сбросы редактора
+Untitled
+Untitled*
+# Внутренние черновики команды (не публикуем в public clone)
+idea1.md
+idea2.md
+idea3.md
+# Операторский runbook GPU/SSH — только локально (шаблон: stands/REMOTE_GPU.example.md)
+stands/REMOTE_GPU.md
+.rag_index_cache.json
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+*.egg-info/
+
+# Маркетинг и финальные артефакты сдачи — только локально (не в public git).
+# История GitHub очищена от этих путей; не коммитьте снова.
+docs/SOCIAL_BLURB.md
+docs/PRESENTATION_SUBMISSION.md
+docs/PRESENTATION_SUBMISSION.pdf
+/LocalScript.pptx
+/LocalScript.pdf

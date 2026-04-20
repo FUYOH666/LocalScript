@@ -1,0 +1,15 @@
+flowchart TD
+    generate[GenerateEndpoint] --> requestShape{InputShape}
+    requestShape -->|prompt| submission[SubmissionSurface]
+    requestShape -->|task/context| showcase[ShowcaseSurface]
+    submission --> buildMessages[InitialMessageBuilder]
+    showcase --> buildMessages
+    buildMessages --> retrieval[OptionalRetriever]
+    buildMessages --> fixLoop[GenerateValidateFixLoop]
+    fixLoop --> extract[LuaExtractor]
+    fixLoop --> validators[ValidationChain]
+    fixLoop --> sandbox[SandboxGate]
+    fixLoop --> candidates[BestOfKSelector]
+    candidates --> quality[OptionalQualityLayers]
+    quality --> evidence[EvidenceBuilder]
+    evidence --> response[SubmissionOrShowcaseResponse]

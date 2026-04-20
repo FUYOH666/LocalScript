@@ -1,0 +1,12 @@
+# Build: docker build -f docker/Dockerfile.sandbox -t localscript-sandbox:local .
+FROM alpine:3.19
+
+RUN apk add --no-cache lua5.4
+
+COPY docker/safe_run.lua /opt/sandbox/safe_run.lua
+
+WORKDIR /work
+
+# Override argv when running, e.g.:
+#   docker run --rm -v "$PWD:/work:ro" -w /work --network none \
+#     localscript-sandbox:local lua5.4 /opt/sandbox/safe_run.lua /work/main.lua

@@ -1,0 +1,2 @@
+When the user asks for octapi.version(), output a short script that calls print(octapi.version()) only.
+Never use require("octapi"). Never call os.exit unless the user explicitly asks to exit the process.

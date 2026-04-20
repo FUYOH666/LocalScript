@@ -1,0 +1,354 @@
+[
+  {
+    "id": "J1_smoke",
+    "success": true,
+    "error": null,
+    "seconds": 2.27,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "not_run",
+        "reason": "docker sandbox mode"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "ok"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 1,
+    "code_preview": "print('jury-smoke-ok')"
+  },
+  {
+    "id": "J2_small_api",
+    "success": true,
+    "error": null,
+    "seconds": 0.96,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "not_run",
+        "reason": "docker sandbox mode"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "ok"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 5,
+    "code_preview": "local function twice(x)\n    return 2 * x\nend\n\nprint(twice(21))"
+  },
+  {
+    "id": "J3_octapi_rag",
+    "success": true,
+    "error": null,
+    "seconds": 0.92,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "not_run",
+        "reason": "docker sandbox mode"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "ok"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 1,
+    "code_preview": "print(octapi.version())"
+  },
+  {
+    "id": "J4_edge",
+    "success": true,
+    "error": null,
+    "seconds": 2.53,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "not_run",
+        "reason": "docker sandbox mode"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "ok"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 10,
+    "code_preview": "local function safe_div(a, b)\n    if b == 0 then\n        return nil, \"Division by zero\"\n    else\n        return a / b\n    end\nend\n\nprint(safe_div(10, 2))\nprint(safe_div(3, 0))"
+  },
+  {
+    "id": "J5_fix_loop",
+    "success": true,
+    "error": null,
+    "seconds": 2.36,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "not_run",
+        "reason": "docker sandbox mode"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "ok"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 10,
+    "code_preview": "local function greet(name)\n    if name == \"\" or name == nil then\n        return \"Hello, world\"\n    else\n        return \"Hello, \" .. name\n    end\nend\n\nprint(greet(\"\"))\nprint(greet(\"Ada\"))"
+  },
+  {
+    "id": "J6_octapi_connect",
+    "success": true,
+    "error": null,
+    "seconds": 1.4,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "not_run",
+        "reason": "docker sandbox mode"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "ok"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 3,
+    "code_preview": "local h = octapi.connect(\"relay\")\nh:send(\"ping\")\nh:close()"
+  },
+  {
+    "id": "J7_purity",
+    "success": true,
+    "error": null,
+    "seconds": 3.81,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "not_run",
+        "reason": "docker sandbox mode"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "ok"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 16,
+    "code_preview": "local function config_defaults()\n    return { timeout = 30, retries = 3 }\nend\n\nlocal function merge_config(base, override)\n    local result = {}\n    for k, v in pairs(base) do\n        result[k] = v\n    end\n    for k, v in pairs(override) do\n        result[k] = v\n    end\n    return result\nend\n\nprint(merge_config(config_defaults(), { retries = 1 }).retries)"
+  },
+  {
+    "id": "J8_explicit_ban",
+    "success": true,
+    "error": null,
+    "seconds": 1.37,
+    "steps": 1,
+    "validation_profile": "full",
+    "last_validation_ok": true,
+    "last_sandbox_ok": true,
+    "validation_tools": [
+      {
+        "tool": "stylua",
+        "status": "ok"
+      },
+      {
+        "tool": "selene",
+        "status": "ok"
+      },
+      {
+        "tool": "luacheck",
+        "status": "disabled"
+      },
+      {
+        "tool": "lua-language-server",
+        "status": "ok"
+      },
+      {
+        "tool": "luac",
+        "status": "not_run",
+        "reason": "docker sandbox mode"
+      },
+      {
+        "tool": "docker_sandbox",
+        "status": "ok"
+      }
+    ],
+    "quality_policy": null,
+    "quality_judge": null,
+    "quality_judge_error": null,
+    "generate_candidates_n": 1,
+    "candidate_index": 0,
+    "code_lines": 2,
+    "code_preview": "local sum = 1 + 2 + 3\nprint(sum)"
+  }
+]

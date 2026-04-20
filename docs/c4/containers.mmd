@@ -1,0 +1,8 @@
+flowchart LR
+    client[ClientCurlSwaggerUI] --> api[FastAPIApplication]
+    api --> orchestrator[GenerationOrchestrator]
+    orchestrator --> llm[OpenAICompatibleLLMEndpoint]
+    orchestrator --> rag[OptionalLocalRAG]
+    orchestrator --> validation[ValidationChain]
+    orchestrator --> sandbox[SandboxGate]
+    orchestrator --> evidence[EvidenceSummary]

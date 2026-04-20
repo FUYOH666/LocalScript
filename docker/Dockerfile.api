@@ -1,0 +1,33 @@
+# API image for jury / CI: Python + uv + minimal Lua (luac5.4) for luac_only sandbox.
+# Build from repo root:
+#   docker build -f docker/Dockerfile.api -t localscript-api:local .
+FROM python:3.12-slim
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        lua5.4 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+WORKDIR /app
+
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    PYTHONUNBUFFERED=1 \
+    LOCALSCRIPT_API_HOST=0.0.0.0 \
+    LOCALSCRIPT_ENABLE_STYLUA=false \
+    LOCALSCRIPT_ENABLE_SELENE=false \
+    LOCALSCRIPT_ENABLE_LUALS=false \
+    LOCALSCRIPT_LUAC_COMMAND=luac5.4
+
+COPY pyproject.toml uv.lock README.md ./
+COPY localscript ./localscript
+
+RUN uv sync --frozen --no-dev
+
+EXPOSE 8765
+
+CMD ["uv", "run", "localscript-api"]
