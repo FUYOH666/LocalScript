@@ -2,7 +2,7 @@
 
 Notable changes to this project are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-Detailed per-version notes before the public repository cleanup live only in **git history** (`git log`, tags).
+The pre–public-release changelog granularity was **not carried over** to this root commit; if you need the old narrative, use a **local backup** or any private clone that still had the previous `main`.
 
 ## [Unreleased]
 
