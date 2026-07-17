@@ -1,4 +1,10 @@
+<p align="center">
+  <img src="assets/localscript-social-cover.png" alt="LocalScript — local trust loop for Lua" width="420" />
+</p>
+
 # LocalScript
+
+**Local trust loop for Lua 5.4** — generate, validate, and repair code on an OpenAI-compatible LLM you control. No required calls to public AI vendors.
 
 LocalScript is a **trust loop for Lua 5.4**: a natural-language task (RU/EN) goes to an **OpenAI-compatible LLM you control** (Ollama, vLLM, LM Studio, …), the service extracts Lua, runs **validators** (StyLua, Selene, LuaLS, `luac`, optional Docker sandbox), and on failure feeds diagnostics back into the model for another pass. There is **no** required dependency on hosted AI vendors (OpenAI, Anthropic, …); inference stays on whatever endpoint you configure.
 
